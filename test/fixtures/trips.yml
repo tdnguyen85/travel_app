@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: 
+  user_id: 1
+  like: 1
+  begin_on: 2013-06-08
+  end_on: 2013-06-08
+
+two:
+  title: 
+  user_id: 1
+  like: 1
+  begin_on: 2013-06-08
+  end_on: 2013-06-08

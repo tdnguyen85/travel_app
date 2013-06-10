@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Item:</b>
+  <%= @itenerary.item %>
+</p>
+
+<p>
+  <b>Activity to do:</b>
+  <%= @itenerary.activity_to_do %>
+</p>
+
+<p>
+  <b>Place to eat:</b>
+  <%= @itenerary.place_to_eat %>
+</p>
+
+<p>
+  <b>Place to sleep:</b>
+  <%= @itenerary.place_to_sleep %>
+</p>
+
+
+<%= link_to 'Edit', edit_itenerary_path(@itenerary) %> |
+<%= link_to 'Back', iteneraries_path %>

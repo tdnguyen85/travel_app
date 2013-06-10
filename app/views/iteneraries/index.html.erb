@@ -1,0 +1,33 @@
+<h1>Listing iteneraries</h1>
+
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Activity to do</th>
+    <th>Place to eat</th>
+    <th>Place to sleep</th>
+    <th>City ID</th>
+    <th>Trip ID</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @iteneraries.each do |itenerary| %>
+  <tr>
+    <td><%= itenerary.item %></td>
+    <td><%= itenerary.activity_to_do %></td>
+    <td><%= itenerary.place_to_eat %></td>
+    <td><%= itenerary.place_to_sleep %></td>
+    <td><%= itenerary.city_id %></td>
+    <td><%= itenerary.trip_id %></td>
+    <td><%= link_to 'Show', itenerary %></td>
+    <td><%= link_to 'Edit', edit_itenerary_path(itenerary) %></td>
+    <td><%= link_to 'X', itenerary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Itenerary', new_itenerary_path %>

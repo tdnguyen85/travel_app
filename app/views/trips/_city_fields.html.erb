@@ -1,0 +1,12 @@
+<fieldset>
+  <%= f.label :name, "City" %>
+  <%= f.text_field :name %>
+  <%= f.label :country %>
+  <%= f.text_field :country %>
+  <%= f.check_box :_destroy %>
+  <%= f.label :_destroy, "Remove City from Trip" %>
+  <%= f.fields_for :cities do |builder| %>
+    <%= render 'itenerary_fields', f: builder %>
+  <% end %>
+  <%= link_to_add_fields "Add Activity", f, :iteneraries %>
+</fieldset>

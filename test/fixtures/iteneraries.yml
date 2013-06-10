@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  item: MyString
+  activity_to_do: false
+  place_to_eat: false
+  place_to_sleep: false
+
+two:
+  item: MyString
+  activity_to_do: false
+  place_to_eat: false
+  place_to_sleep: false

@@ -1,0 +1,38 @@
+
+<div class="form-container">
+  <%= form_for(@trip) do |f| %>
+    <% if @trip.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
+
+        <ul>
+        <% @trip.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+    <div class="field">
+      <%= f.label :begin_on %>
+      <%= f.text_field :begin_on %>
+    </div>
+    <div class="field">
+      <%= f.label :end_on %>
+      <%= f.text_field :end_on %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+
+    <%= f.fields_for :cities do |builder| %>
+      <%= render 'city_fields', f: builder %>
+    <% end %>
+    <%= link_to_add_fields "Add City", f, :cities %>
+  <% end %>
+
+</div>

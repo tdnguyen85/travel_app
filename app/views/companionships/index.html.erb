@@ -1,0 +1,25 @@
+<h1>Listing companionships</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Companion</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @companionships.each do |companionship| %>
+  <tr>
+    <td><%= companionship.user_id %></td>
+    <td><%= companionship.companion_id %></td>
+    <td><%= link_to 'Show', companionship %></td>
+    <td><%= link_to 'Edit', edit_companionship_path(companionship) %></td>
+    <td><%= link_to 'Destroy', companionship, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Companionship', new_companionship_path %>
