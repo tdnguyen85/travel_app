@@ -10,9 +10,7 @@ gem 'rspec-rails', '~> 2.0'
 gem 'capybara'
 gem 'devise'
 gem 'acts_as_commentable_with_threading'
-gem 'ember-rails'
-gem 'ember-source'
-gem 'handlebars-source', '1.0.0.rc4' # or the version you need
+gem 'awesome_nested_fields'
 
 # Gems used only for assets and not required
 # in production environments by default.

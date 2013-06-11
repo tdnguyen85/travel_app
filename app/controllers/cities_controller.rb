@@ -44,7 +44,7 @@ class CitiesController < ApplicationController
   # POST /cities.json
   def create
     @city = City.new(params[:city])
-    @city.trip_id = Trip.last.id
+    # @city.trip_id = Trip.last.id
     respond_to do |format|
       if @city.save
         format.html { redirect_to new_itenerary_path, notice: 'City was successfully created.' }

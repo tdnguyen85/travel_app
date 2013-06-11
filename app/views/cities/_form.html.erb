@@ -26,8 +26,9 @@
     </div>
 
     <%= f.fields_for :iteneraries do |builder| %>
-      <%= render 'iteneraries_fields', f: builder %>
+      <%= render 'itenerary_fields', f: builder %>
     <% end %>
 
+    <%= link_to_add_fields "Add Activity", f, :iteneraries %>
   <% end %>
 </div>

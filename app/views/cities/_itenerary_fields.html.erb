@@ -1,0 +1,13 @@
+<fieldset>
+      <%= f.label :item %>
+      <%= f.text_field :item %><be />
+      <%= f.check_box :activity_to_do %>
+      <%= f.label :activity_to_do %>
+      <%= f.check_box :place_to_eat %>
+      <%= f.label :place_to_eat %>
+      <%= f.check_box :place_to_sleep %>
+      <%= f.label :place_to_sleep %>
+      <%= f.hidden_field :_destroy %>
+      <%= f.submit %>
+      <%= link_to "remove", '#', class: "remove_fields" %>
+</fieldset>
