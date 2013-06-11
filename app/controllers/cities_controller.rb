@@ -14,7 +14,7 @@ class CitiesController < ApplicationController
   # GET /cities/1.json
   def show
     @city = City.find(params[:id])
-    @current_trip = Trip.find(params[:id])
+    # @current_trip = Trip.find(params[:id])
     @trip_of_current_city = City.joins(:trip).where(city: {trip_id: @current_trip.id})
     @iteneraries_of_current_trip = Itenerary.joins(:city).where(iteneraries: {city_id: @city.id})
 
@@ -44,7 +44,7 @@ class CitiesController < ApplicationController
   # POST /cities.json
   def create
     @city = City.new(params[:city])
-    # @city.trip_id = Trip.last.id
+    @city.trip_id = Trip.last.id
     respond_to do |format|
       if @city.save
         format.html { redirect_to new_itenerary_path, notice: 'City was successfully created.' }

@@ -1,9 +1,34 @@
-<fieldset>
+
+<li class="city">
   <%= f.label :name, "City" %>
   <%= f.text_field :name %>
   <%= f.label :country %>
   <%= f.text_field :country %>
-  <%= f.check_box :_destroy %>
-  <%= f.label :_destroy, "Remove City from Trip" %>
-  <%= link_to_add_fields "Add Activity", f, :iteneraries %>
-</fieldset>
+  <h3>Iteneraries</h3>
+  <div class="nested-level-2">
+    <ul class="iteneraries-container">
+      <%= f.nested_fields_for :iteneraries, new_item_index: 'new_resource_item', html: { class: "itenerary-form" } do |f| %>
+        <li class="itenerary">
+          <%= f.label :item %>
+          <%= f.text_field :item %>
+          <%= f.check_box :activity_to_do %>
+          <%= f.label :activity_to_do %>
+          <%= f.check_box :place_to_eat %>
+          <%= f.label :place_to_eat %>
+          <%= f.check_box :place_to_sleep %>
+          <%= f.label :place_to_sleep %>
+
+          <a href="#" class="resource-remove">remove</a>
+
+          <%= f.hidden_field :id %>
+          <%= f.hidden_field :_destroy %>
+        </li>
+      <% end %>
+    </ul>
+    <a href="#" class="resource-add">Add Itenerary</a>
+  </div>
+  <a href="#" class="task-remove">remove</a>
+
+  <%= f.hidden_field :id %>
+  <%= f.hidden_field :_destroy %>
+</li>

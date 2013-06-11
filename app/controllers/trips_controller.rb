@@ -34,7 +34,10 @@ class TripsController < ApplicationController
   # GET /trips/new.json
   def new
     @trip = Trip.new
-
+    @trip.cities.build
+    @trip.cities.each do |t|
+      t.iteneraries.build
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @trip }

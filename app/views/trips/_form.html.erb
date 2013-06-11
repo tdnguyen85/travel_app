@@ -1,39 +1,37 @@
 
+
 <div class="form-container panel">
-  <%= form_for(@trip) do |f| %>
-    <% if @trip.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
+<%= form_for @trip, :html => { :class => "trip-form" } do |f| %>
+  <% if @trip.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
 
-        <ul>
-        <% @trip.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <div class="field">
-      <%= f.label :title %>
-      <%= f.text_field :title %>
+      <ul>
+      <% @trip.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
     </div>
-    <div class="field">
-      <%= f.label :begin_on %>
-      <%= f.text_field :begin_on %>
-    </div>
-    <div class="field">
-      <%= f.label :end_on %>
-      <%= f.text_field :end_on %>
-    </div>
-    <div class="actions">
-      <%= f.submit %>
-    </div>
-
-    <%= f.fields_for :cities do |builder| %>
-      <%= render 'city_fields', f: builder %>
-    <% end %>
-
-    <%= link_to_add_fields "Add City", f, :cities %>
   <% end %>
 
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+      <%= f.label :begin_on %>
+      <%= f.text_field :begin_on %>
+      <%= f.label :end_on %>
+      <%= f.text_field :end_on %>
+    <h2>Tasks</h2>
+    <ol class="tasks-container">
+      <%= f.nested_fields_for :cities, render_template: false, new_item_index: 'new_task_item' do |f| %>
+        <%= render 'city_fields', f: f %>
+      <% end %>
+    </ol>
+    <%= nested_fields_templates %>
+    <a href="#" class="task-add">Add Task</a>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
 </div>

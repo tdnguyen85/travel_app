@@ -58,7 +58,8 @@ class ItenerariesController < ApplicationController
   # PUT /iteneraries/1.json
   def update
     @itenerary = Itenerary.find(params[:id])
-
+    @itenerary.trip_id = params[:trip]
+    @Itenerary.city_id = params[:city]
     respond_to do |format|
       if @itenerary.update_attributes(params[:itenerary])
         format.html { redirect_to @itenerary, notice: 'Itenerary was successfully updated.' }

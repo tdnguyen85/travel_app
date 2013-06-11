@@ -13,7 +13,11 @@
 //= require jquery
 //= require jquery.ui.datepicker
 //= require jquery_ujs
+//= require jquery.nested-fields
 //= require foundation
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+$(document).ready(function(e) {
+  $('FORM').nestedFields();
+});
