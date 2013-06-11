@@ -6,12 +6,10 @@ jQuery ->
     dateFormat: 'yy-mm-dd'
   $('#trip_end_on').datepicker
     dateFormat: 'yy-mm-dd'
-
   $('form').on 'click', '.remove_fields', (event) ->
     $(this).prev('input[type=hidden]').val('1')
     $(this).closest('fieldset').hide()
     event.preventDefault()
-
   $('form').on 'click', '.add_fields', (event) ->
     time = new Date().getTime()
     regexp = new RegExp($(this).data('id'), 'g')

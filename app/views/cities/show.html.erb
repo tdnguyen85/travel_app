@@ -1,20 +1,24 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <b>Name:</b>
-  <%= @city.name %>
-</p>
-
-<p>
-  <b>Country:</b>
-  <%= @city.country %>
-</p>
+  <h1><%= @current_trip.title %></h1>
+  <h2><%= @city.name %></h2>
+  <h3><%= @city.country %></h3>
 
 <p>
   <b>Trip:</b>
-  <%= @city.trip_id %>
+  <%= @current_trip.inspect %>
 </p>
+<hr />
+  <% @iteneraries_of_current_trip.each do |i| %>
+    <%= i.item %> <br />
+    <%= "This is a thing to do" if i.activity_to_do %> <br />
+    <%= "This is a place to eat" if i.place_to_eat %> <br />
+    <%= "This is a place to sleep" if i.place_to_sleep %> <br />
+    <%= i.created_at.strftime("%B %-d, %Y %-l:%M %p") %> <br />
+    <%= i.updated_at.strftime("%B %-d, %Y %-l:%M %p") %> <br />
 
+  <% end %>
+
+<%= @iteneraries_of_current_trip.inspect %>
 
 <%= link_to 'Edit', edit_city_path(@city) %> |
 <%= link_to 'Back', cities_path %>

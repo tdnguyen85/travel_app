@@ -14,12 +14,6 @@
 //= require jquery.ui.datepicker
 //= require jquery_ujs
 //= require foundation
-//= require handlebars
-//= require ember
-//= require ember-data
-//= require_self
-//= require travel_app
-// TravelApp = Ember.Application.create();
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

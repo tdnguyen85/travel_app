@@ -1,5 +1,5 @@
 class TripsController < ApplicationController
-  before_filter :authenticate_user!, except: [:index, :show]
+  before_filter :authenticate_user!#, except: [:index, :show]
   # GET /trips
   # GET /trips.json
   def index
@@ -16,7 +16,12 @@ class TripsController < ApplicationController
   def show
     @trip = Trip.find(params[:id])
     @cities_in_current_trip = City.joins(:trip).where(cities: {trip_id: @trip.id})
+
     @iteneraries_of_current_trip = Itenerary.joins(:city).where(iteneraries: {trip_id: @trip.id})
+    @array_of_items = []
+    @cities_in_current_trip.each do |i|
+      @array_of_items << Itenerary.joins(:city).where(iteneraries: {trip_id: @trip.id})
+    end
     # Post.where(author: author)
     # Author.joins(:posts).where(posts: {author: author})
     respond_to do |format|

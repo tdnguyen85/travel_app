@@ -32,6 +32,7 @@
     <%= f.fields_for :cities do |builder| %>
       <%= render 'city_fields', f: builder %>
     <% end %>
+
     <%= link_to_add_fields "Add City", f, :cities %>
   <% end %>
 

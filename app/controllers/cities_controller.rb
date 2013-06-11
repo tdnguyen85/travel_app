@@ -14,6 +14,9 @@ class CitiesController < ApplicationController
   # GET /cities/1.json
   def show
     @city = City.find(params[:id])
+    @current_trip = Trip.find(params[:id])
+    @trip_of_current_city = City.joins(:trip).where(city: {trip_id: @current_trip.id})
+    @iteneraries_of_current_trip = Itenerary.joins(:city).where(iteneraries: {city_id: @city.id})
 
     respond_to do |format|
       format.html # show.html.erb
