@@ -25,21 +25,21 @@ jQuery ($) ->
     dateFormat: 'yy-mm-dd'
 
   resourcesOptions = {
-    itemSelector: ".resource",
-    containerSelector: ".resources-container",
-    addSelector: ".resource-add",
-    removeSelector: ".resource-remove",
-    itemTemplateSelector: ".resource.template",
-    new_item_index: "new_resource_index"
+    itemSelector: ".itenerary",
+    containerSelector: ".iteneraries-container",
+    addSelector: ".itenerary-add",
+    removeSelector: ".itenerary-remove",
+    itemTemplateSelector: ".itenerary.template",
+    new_item_index: "new_itenerary_index"
   }
 
-  $(".project-form").nestedFields({
-    itemSelector: ".task",
-    containerSelector: ".tasks-container",
-    addSelector: ".task-add",
-    removeSelector: ".task-remove",
-    itemTemplateSelector: ".task.template",
-    new_item_index: "new_task_index",
+  $(".trip-form").nestedFields({
+    itemSelector: ".city",
+    containerSelector: ".cities-container",
+    addSelector: ".city-add",
+    removeSelector: ".city-remove",
+    itemTemplateSelector: ".city.template",
+    new_item_index: "new_city_index",
     afterInsert: (item) ->
       # Applies nestedFields to this task's resources
       item.find(".nested-level-2").nestedFields(resourcesOptions)
@@ -48,4 +48,4 @@ jQuery ($) ->
   })
 
   # Applies nestedFields to all projects on page
-  $(".project-form").find(".nested-level-2").nestedFields(resourcesOptions)
+  $(".trip-form").find(".nested-level-2").nestedFields(resourcesOptions)

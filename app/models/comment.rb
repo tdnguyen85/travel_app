@@ -1,4 +1,5 @@
 class Comment < ActiveRecord::Base
+  attr_accessible :body, :commentable
   acts_as_nested_set :scope => [:commentable_id, :commentable_type]
 
   validates :body, :presence => true
@@ -9,7 +10,6 @@ class Comment < ActiveRecord::Base
   #acts_as_votable
 
   belongs_to :commentable, :polymorphic => true
-
   # NOTE: Comments belong to a user
   belongs_to :user
 

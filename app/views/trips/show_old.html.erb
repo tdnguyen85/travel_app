@@ -1,0 +1,50 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+
+  <h2>
+    <%= @trip.title %>
+  </h2>
+
+  <p>
+    <b>Like:</b>
+    <%= @trip.like %>
+  </p>
+
+  <p>
+    <span><b>Begin on: </b> <%= @trip.begin_on %></span>
+  </p>
+
+  <p>
+    <span><b>End on: </b> <%= @trip.end_on %></span>
+  </p>
+  <p>
+    <% @cities_in_current_trip.each do |i| %>
+    <%= i.name %><br />
+    <%= i.country %><br />
+    <%= i.created_at.strftime("%B %-d, %Y %-l:%M %p") %><br />
+    <%= i.updated_at.strftime("%B %-d, %Y %-l:%M %p") %><br />
+
+  <% end %>
+  <hr />
+  <% @iteneraries_of_current_trip.each do |i| %>
+    <%= i.item %> <br />
+    <%= "This is a thing to do" if i.activity_to_do %> <br />
+    <%= "This is a place to eat" if i.place_to_eat %> <br />
+    <%= "This is a place to sleep" if i.place_to_sleep %> <br />
+    <%= i.created_at.strftime("%B %-d, %Y %-l:%M %p") %> <br />
+    <%= i.updated_at.strftime("%B %-d, %Y %-l:%M %p") %> <br />
+
+  <% end %>
+  <hr />
+  <%= link_to 'Edit', edit_trip_path(@trip) %> |
+  <%= link_to 'Back', trips_path %>
+  <p>
+    <hr />
+    <%= @cities_in_current_trip.inspect %><br />
+    <hr />
+    <%= @iteneraries_of_current_trip.inspect %><br />
+    <hr />
+    hi<%= @array_of_items %><br />
+  </p>
+
+</div>

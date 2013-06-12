@@ -3,15 +3,21 @@ TravelApp::Application.routes.draw do
   root :to => "home#index"
   # get 'cities/:id', :to => 'city#show', :as => 'show_city'
 
-
   resources :companionships
   resources :friendships
   resources :favorites
   resources :iteneraries
   resources :cities
-  resources :trips
+  # resources :trips
   resources :users
 
+  # match "/trips/create_comment" => "posts#create_comment", :as => "create_comment_to_trips", :via => [:post]
+  resources :trips do
+    resources :comments
+  end
+
+
+  get 'tags/:tag', to: 'trips#index', as: :tag
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

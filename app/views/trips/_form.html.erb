@@ -1,6 +1,6 @@
 
 
-<div class="form-container panel">
+<div class="panel">
 <%= form_for @trip, :html => { :class => "trip-form" } do |f| %>
   <% if @trip.errors.any? %>
     <div id="error_explanation">
@@ -15,20 +15,36 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-      <%= f.label :begin_on %>
-      <%= f.text_field :begin_on %>
-      <%= f.label :end_on %>
-      <%= f.text_field :end_on %>
-    <h2>Tasks</h2>
-    <ol class="tasks-container">
-      <%= f.nested_fields_for :cities, render_template: false, new_item_index: 'new_task_item' do |f| %>
-        <%= render 'city_fields', f: f %>
-      <% end %>
-    </ol>
+    <div class="row">
+      <div class="small-2 large-3 columns">
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+      </div>
+      <div class="small-2 large-3 columns">
+        <%= f.label :begin_on %>
+        <%= f.text_field :begin_on %>
+      </div>
+      <div class="small-2 large-3 columns">
+        <%= f.label :end_on %>
+        <%= f.text_field :end_on %>
+      </div>
+      <div class="small-2 large-3 columns">
+        <%= f.label :open, "Is this trip open to other travelers?" %>
+        <%= f.check_box :open %>
+      </div>
+      <div class="field">
+        <%= f.label :tag_list, "Tags (separated by commas)" %><br />
+        <%= f.text_field :tag_list %>
+      </div>
+    </div>
+      <h2>Trip / Cities</h2>
+      <ul class="cities-container">
+        <%= f.nested_fields_for :cities, render_template: false, new_item_index: 'new_city_item' do |f| %>
+          <%= render 'city_fields', f: f %>
+        <% end %>
+      </ul>
     <%= nested_fields_templates %>
-    <a href="#" class="task-add">Add Task</a>
+    <a href="#" class="city-add">Add City</a>
   </div>
   <div class="actions">
     <%= f.submit %>

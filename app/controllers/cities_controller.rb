@@ -42,35 +42,35 @@ class CitiesController < ApplicationController
 
   # POST /cities
   # POST /cities.json
-  def create
-    @city = City.new(params[:city])
-    @city.trip_id = Trip.last.id
-    respond_to do |format|
-      if @city.save
-        format.html { redirect_to new_itenerary_path, notice: 'City was successfully created.' }
-        format.json { render json: @city, status: :created, location: @city }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @city.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def create
+  #   @city = City.new(params[:city])
+  #   @city.trip_id = Trip.last.id
+  #   respond_to do |format|
+  #     if @city.save
+  #       format.html { redirect_to new_itenerary_path, notice: 'City was successfully created.' }
+  #       format.json { render json: @city, status: :created, location: @city }
+  #     else
+  #       format.html { render action: "new" }
+  #       format.json { render json: @city.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # PUT /cities/1
   # PUT /cities/1.json
-  def update
-    @city = City.find(params[:id])
+  # def update
+  #   @city = City.find(params[:id])
 
-    respond_to do |format|
-      if @city.update_attributes(params[:city])
-        format.html { redirect_to @city, notice: 'City was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @city.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  #   respond_to do |format|
+  #     if @city.update_attributes(params[:city])
+  #       format.html { redirect_to @city, notice: 'City was successfully updated.' }
+  #       format.json { head :no_content }
+  #     else
+  #       format.html { render action: "edit" }
+  #       format.json { render json: @city.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /cities/1
   # DELETE /cities/1.json

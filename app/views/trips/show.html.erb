@@ -1,50 +1,74 @@
-<div class="container">
-  <p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="small-3 large-3 columns panel">
+    <span class="small-text">
+      <%= current_user.first_name %> <%= current_user.last_name %><br />
+      Feeling <%= current_user.mood %><br />
+      Currently in <%= current_user.current_location %><br />
+      From <%= current_user.home_base %><br />
+      Goal: <%= current_user.goal %><br />
+      Bio: <%= current_user.bio %><br />
+    </span>
+    <br />
+    <br />
+    <span class="panel">
+      Friends
+    </span>
+  </div>
+  <div class="small-9 large-9 columns">
+    <div class="row">
 
-  <h2>
-    <%= @trip.title %>
-  </h2>
+      <div class="small-1 large-1 columns">
+      </div>
+      <div class="small-11 large-11 columns">
+        <h3>
+          <%= @trip.title %>
+        </h3>
+        <span>
+          <%= @tag_list.inspect %>
+        </span>
+        <strong>Cities on Trip</strong>
+        <ul>
+          <% @trip.cities.each do |i| %>
+            <li class="panel small-text">
+              <div>
+                <%= i.name %><br />
+                <%= i.country %><br />
+                <%= i.created_at.strftime("%B %-d, %Y %-l:%M %p") %><br />
+                <%= i.updated_at.strftime("%B %-d, %Y %-l:%M %p") %><br />
+              </div>
+              <strong>Iteneraries</strong>
+              <ul class="panel small-text">
+                <% i.iteneraries.each do |n| %>
+                  <li><%= n.item %></li>
+                  <li><%= "This is a thing to do" if n.activity_to_do %></li>
+                  <li><%= "This is a place to eat" if n.place_to_eat %></li>
+                  <li><%= "This is a place to sleep" if n.place_to_sleep %></li>
+                  <li><%= n.created_at.strftime("%B %-d, %Y %-l:%M %p") %></li>
+                  <li><%= n.updated_at.strftime("%B %-d, %Y %-l:%M %p") %></li>
+                <% end %>
+              </ul>
+            </li>
+        <% end %>
+        </ul>
+        <hr />
+        <%= link_to 'Edit', edit_trip_path(@trip) %>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<div class="row">
+  <div class="small-3 large-3 columns panel">
+  </div>
+  <div class="small-1 large-1 columns">
+  </div>
+  <div class="small-8 large-8 columns panel">
 
-  <p>
-    <b>Like:</b>
-    <%= @trip.like %>
-  </p>
+  <%= @comments.inspect %>
 
-  <p>
-    <span><b>Begin on: </b> <%= @trip.begin_on %></span>
-  </p>
-
-  <p>
-    <span><b>End on: </b> <%= @trip.end_on %></span>
-  </p>
-  <p>
-    <% @cities_in_current_trip.each do |i| %>
-    <%= i.name %><br />
-    <%= i.country %><br />
-    <%= i.created_at.strftime("%B %-d, %Y %-l:%M %p") %><br />
-    <%= i.updated_at.strftime("%B %-d, %Y %-l:%M %p") %><br />
-
-  <% end %>
-  <hr />
-  <% @iteneraries_of_current_trip.each do |i| %>
-    <%= i.item %> <br />
-    <%= "This is a thing to do" if i.activity_to_do %> <br />
-    <%= "This is a place to eat" if i.place_to_eat %> <br />
-    <%= "This is a place to sleep" if i.place_to_sleep %> <br />
-    <%= i.created_at.strftime("%B %-d, %Y %-l:%M %p") %> <br />
-    <%= i.updated_at.strftime("%B %-d, %Y %-l:%M %p") %> <br />
-
-  <% end %>
-  <hr />
-  <%= link_to 'Edit', edit_trip_path(@trip) %> |
-  <%= link_to 'Back', trips_path %>
-  <p>
-    <hr />
-    <%= @cities_in_current_trip.inspect %><br />
-    <hr />
-    <%= @iteneraries_of_current_trip.inspect %><br />
-    <hr />
-    hi<%= @array_of_items %><br />
-  </p>
+  <%= render '/comments/comments' %>
+  <%= render '/comments/form' %>
+  </div>
 
 </div>

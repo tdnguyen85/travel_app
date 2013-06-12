@@ -4,26 +4,59 @@ class TripsController < ApplicationController
   # GET /trips.json
   def index
     @trips = Trip.all
-
+    if params[:tag]
+      @trips = Trip.tagged_with(params[:tag])
+    else
+      @trips = Trip.all
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @trips }
     end
   end
 
+  def create_comment
+    @trip = Trip.find(params[:id])
+    @comment = @trip.comments.new params[:comment]
+    redirect_to :action => :show, :id => trip
+
+    # @post = @post.find params[:post_id]
+    # @comment = @post.comments.new params[:comment]
+    # if @comment.save
+    # redirect_to @post
+
+    # @trip = Trip.find(params[:id])
+    # @user_who_commented = @current_user
+    # @comment = Comment.build_from( @trip, @user_who_commented.id, "Hey guys this is my comment!" )
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to @trip, notice: 'Comment was successfully created.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "show" }
+        format.json { render json: @trip.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def show_comment
+    @trip = Trip.find(params[:id])
+    @comments = @trip.comments.all
+  end
+
   # GET /trips/1
   # GET /trips/1.json
   def show
     @trip = Trip.find(params[:id])
-    @cities_in_current_trip = City.joins(:trip).where(cities: {trip_id: @trip.id})
+    @user_who_commented = current_user
+    @commentable = @trip
+    @comments = @commentable.comments
+    @comment = Comment.new#(:body => params[:body], :user_id => @user_who_commented)
 
-    @iteneraries_of_current_trip = Itenerary.joins(:city).where(iteneraries: {trip_id: @trip.id})
-    @array_of_items = []
-    @cities_in_current_trip.each do |i|
-      @array_of_items << Itenerary.joins(:city).where(iteneraries: {trip_id: @trip.id})
-    end
-    # Post.where(author: author)
-    # Author.joins(:posts).where(posts: {author: author})
+    # @cities_in_current_trip = City.joins(:trip).where(cities: {trip_id: @trip.id})
+    # @iteneraries_of_current_trip = Itenerary.joins(:city).where(iteneraries: {trip_id: @trip.id})
+
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @trip }

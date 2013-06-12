@@ -11,6 +11,8 @@ gem 'capybara'
 gem 'devise'
 gem 'acts_as_commentable_with_threading'
 gem 'awesome_nested_fields'
+gem 'acts-as-taggable-on'
+gem 'awesome_nested_set'
 
 # Gems used only for assets and not required
 # in production environments by default.
