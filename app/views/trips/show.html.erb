@@ -11,9 +11,20 @@
     </span>
     <br />
     <br />
-    <span class="panel">
-      Friends
-    </span>
+    <div>
+      <span class="panel">
+        Friends
+      </span>
+      <ul class="small-text">
+        <% current_user.friendships.each do |friendship| %>
+          <li>
+            <%= friendship.friend.first_name %>
+            (<%= link_to "X", friendship, :method => :delete %>)
+          </li>
+        <% end %>
+
+        </ul>
+    </div>
   </div>
   <div class="small-9 large-9 columns">
     <div class="row">

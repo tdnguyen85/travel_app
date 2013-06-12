@@ -1,6 +1,6 @@
 TravelApp::Application.routes.draw do
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}
-  root :to => "home#index"
+  root :to => "trips#index"
   # get 'cities/:id', :to => 'city#show', :as => 'show_city'
 
   resources :companionships
@@ -11,7 +11,6 @@ TravelApp::Application.routes.draw do
   # resources :trips
   resources :users
 
-  # match "/trips/create_comment" => "posts#create_comment", :as => "create_comment_to_trips", :via => [:post]
   resources :trips do
     resources :comments
   end

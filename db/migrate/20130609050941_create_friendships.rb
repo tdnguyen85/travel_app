@@ -5,7 +5,6 @@ class CreateFriendships < ActiveRecord::Migration
       t.integer :friend_id
       t.string :create
       t.string :destroy
-
       t.timestamps
     end
   end
