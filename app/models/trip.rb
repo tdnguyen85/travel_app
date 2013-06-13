@@ -3,7 +3,9 @@ class Trip < ActiveRecord::Base
   belongs_to :user, inverse_of: :trips
   has_many :cities, inverse_of: :trip
   accepts_nested_attributes_for :cities, allow_destroy: true, reject_if: :all_blank
-  # acts_as_commentable
+  acts_as_commentable
   acts_as_taggable
   has_many :comments, as: :commentable
+
+  validates_presence_of :begin_on, :end_on, :title, :user_id
 end

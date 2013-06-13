@@ -1,6 +1,6 @@
 
 
-<div class="panel">
+<div class="light-box">
 <%= form_for @trip, :html => { :class => "trip-form" } do |f| %>
   <% if @trip.errors.any? %>
     <div id="error_explanation">
@@ -32,22 +32,27 @@
         <%= f.label :open, "Is this trip open to other travelers?" %>
         <%= f.check_box :open %>
       </div>
-      <div class="field">
-        <%= f.label :tag_list, "Tags (separated by commas)" %><br />
+    </div>
+    <div class="row">
+      <div class="small-12 large-12 columns">
+        <%= f.label :tag_list, "Tags (separated by commas)" %>
         <%= f.text_field :tag_list %>
       </div>
     </div>
-      <h2>Trip / Cities</h2>
+      <h2 class="title-box-light">
+        Trip / Cities
+        <%= f.submit :class => "tiny button right" %>
+      </h2>
       <ul class="cities-container">
         <%= f.nested_fields_for :cities, render_template: false, new_item_index: 'new_city_item' do |f| %>
-          <%= render 'city_fields', f: f %>
+          <div class="iten-box"><%= render 'city_fields', f: f %></div>
         <% end %>
       </ul>
     <%= nested_fields_templates %>
-    <a href="#" class="city-add">Add City</a>
+    <a href="#" class="city-add"><button class="tiny button">Add City</button></a>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "small button" %>
   </div>
 <% end %>
 </div>

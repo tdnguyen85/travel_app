@@ -1,28 +1,30 @@
 class CommentsController < ApplicationController
-  before_filter :load_commentable
 
-  def index
-    @comments = @commentable.comments
-  end
+def create
+    @comment_hash = params[:comment]
+    @obj = @comment_hash[:commentable_type].constantize.find(@comment_hash[:commentable_id])
+    # Not implemented: check to see whether the user has permission to create a comment on this object
+    # @comment = Comment.build_from(@obj, current_user, @comment_hash[:body])
+    @comment = Comment.new
+    @comment.body = params[:comment][:body]
+    @comment.user = current_user
+    @comment.commentable_id = params[:comment][:commentable_id]
+    @comment.commentable_type = 'Trip'
 
-  def new
-    @comment = @commentable.comments.new
-    # redict_to @trip
-  end
-
-  def create
-    @comment = @commentable.comments.new(params[:body])
-    if @comment.save
-      redirect_to @commentable, notice: "Comment created."
+    if @comment.save!
+      render :partial => "comments/comment", :locals => { :comment => @comment }, :layout => false, :status => :created
     else
-      render :new
+      render :js => "alert('error saving comment');"
     end
   end
 
-private
+    def destroy
+      @comment = Comment.find(params[:id])
+      if @comment.destroy
+        render :json => @comment, :status => :ok
+      else
+        render :js => "alert('error deleting comment');"
+      end
+    end
 
-  def load_commentable
-    resource, id = request.path.split('/')[1, 2]
-    @commentable = resource.singularize.classify.constantize.find(id)
-  end
 end

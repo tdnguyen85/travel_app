@@ -1,73 +1,115 @@
-<p id="notice"><%= notice %></p>
-<div class="row">
-  <div class="small-3 large-3 columns panel">
-    <span class="small-text">
-      <%= current_user.first_name %> <%= current_user.last_name %><br />
-      Feeling <%= current_user.mood %><br />
-      Currently in <%= current_user.current_location %><br />
-      From <%= current_user.home_base %><br />
-      Goal: <%= current_user.goal %><br />
-      Bio: <%= current_user.bio %><br />
-    </span>
-    <br />
-    <br />
-    <div>
-      <span class="panel">
-        Friends
-      </span>
-      <ul class="small-text">
-        <% current_user.friendships.each do |friendship| %>
-          <li>
-            <%= friendship.friend.first_name %>
-            (<%= link_to "X", friendship, :method => :delete %>)
-          </li>
-        <% end %>
+<div class="row show-container">
+  <section id="sidebar" role="complementary">
+          <div class="title-box">•</div>
 
-        </ul>
+    <div class="small-3 large-3 columns light-box">
+      <div class="iten-box">
+        <span class="small-text">
+          <%= image_tag current_user.gravatar_url :class => "inline" %>
+          <h4 class="inline"><%= current_user.first_name %> <%= current_user.last_name %></h2><br />
+          <hr />
+          Feeling <%= current_user.mood %><br />
+          Currently in <%= current_user.current_location %><br />
+          From <%= current_user.home_base %><br />
+          Goal: <%= current_user.goal %><br />
+          Bio: <%= current_user.bio %><br />
+        </span>
+      </div>
+      <br />
+      <br />
+      <div>
+        <div class="iten-box">
+          <div class="title-box-light">Companions of <%= current_user.first_name %> for <%= @trip.title %></div>
+          <ul class="small-text">
+          <% current_user.companionships.each do |companionship| %>
+            <li>
+              <%= link_to companionship.companion.first_name, user_path(companionship.companion) %>
+              (<%= link_to "X", companionship, :method => :delete %>)
+            </li>
+            <hr />
+            <li><%= link_to "Add Companion to", users_path %> <%= @trip.title %></li>
+          <% end %>
+
+          </ul>
+        </div>
+        <br />
+        <div class="iten-box">
+          <div class="title-box-light">Friends of <%= current_user.first_name %></div>
+          <ul class="small-text">
+          <% current_user.friendships.each do |friendship| %>
+            <li>
+              <%= link_to friendship.friend.first_name, user_path(friendship.friend) %>
+              (<%= link_to "X", friendship, :method => :delete %>)
+            </li>
+            <hr />
+            <li><%= link_to "Find New Friends", users_path %></li>
+          <% end %>
+
+          </ul>
+        </div>
+
+      </div>
     </div>
-  </div>
+  </section>
+  <section role="main">
   <div class="small-9 large-9 columns">
     <div class="row">
 
-      <div class="small-1 large-1 columns">
-      </div>
-      <div class="small-11 large-11 columns">
-        <h3>
+
+      <div class="small-12 large-12 columns">
+        <p id="notice title-box-light"><%= notice %></p>
+        <h3 class="title-box">
           <%= @trip.title %>
+          <% if @trip.open %>
+            •<span>This trip is open to other travelers.</span>
+          <% end %>
+          <%= link_to 'Edit', edit_trip_path(@trip), :class => "right" %>
         </h3>
         <span>
-          <%= @tag_list.inspect %>
+          <%= @trip.tag_list %>
         </span>
-        <strong>Cities on Trip</strong>
+        <section class="light-box">
         <ul>
           <% @trip.cities.each do |i| %>
-            <li class="panel small-text">
+            <li class="small-text">
               <div>
-                <%= i.name %><br />
-                <%= i.country %><br />
-                <%= i.created_at.strftime("%B %-d, %Y %-l:%M %p") %><br />
-                <%= i.updated_at.strftime("%B %-d, %Y %-l:%M %p") %><br />
+                <span class ="right"><%= link_to "×", city_path(i), :method => :delete, :remote => true, :confirm => "Are you sure you want to remove this city? If item is deleted, reload the page for the change to be shown" %></span>
+                <h2 class="title-box-light"><%= i.name %></h2>
+                <h4 class="inline"><%= i.country %></h4>
+                •created: <%= i.created_at.strftime("%B %-d, %Y %-l:%M %p") %>
+                •updated: <%= i.updated_at.strftime("%B %-d, %Y %-l:%M %p") %>
               </div>
-              <strong>Iteneraries</strong>
-              <ul class="panel small-text">
+              <strong>Itenerary for <%= i.name %></strong>
+              <ul class="">
                 <% i.iteneraries.each do |n| %>
+                <section class="iten-box">
+                  <span class ="right"><%= link_to "×", itenerary_path(n), :method => :delete, :remote => true, :confirm => "Are you sure you want to remove this itenerary? If item is deleted, reload the page for the change to be shown" %></span>
                   <li><%= n.item %></li>
-                  <li><%= "This is a thing to do" if n.activity_to_do %></li>
-                  <li><%= "This is a place to eat" if n.place_to_eat %></li>
-                  <li><%= "This is a place to sleep" if n.place_to_sleep %></li>
-                  <li><%= n.created_at.strftime("%B %-d, %Y %-l:%M %p") %></li>
-                  <li><%= n.updated_at.strftime("%B %-d, %Y %-l:%M %p") %></li>
+                  <li class="list-inline">•<%= "This is a thing to do" if n.activity_to_do %></li>
+                  <li class="list-inline">•<%= "This is a place to eat" if n.place_to_eat %></li>
+                  <li class="list-inline">•<%= "This is a place to sleep" if n.place_to_sleep %></li>
+                  <li class="list-inline">•<%= n.created_at.strftime("%B %-d, %Y %-l:%M %p") %></li>
+                  <li class="list-inline">•<%= n.updated_at.strftime("%B %-d, %Y %-l:%M %p") %></li>
+                </section>
                 <% end %>
               </ul>
             </li>
+            <hr />
         <% end %>
         </ul>
+        </section>
         <hr />
-        <%= link_to 'Edit', edit_trip_path(@trip) %>
+        <h5 class="title-box-light">•<%= link_to 'Edit This Trip', edit_trip_path(@trip) %></h5>
+        <div class="light-box">
+          <%= render :partial => 'comments/comments', :collection => @comments, :as => :comment %>
+          <br />
+          <%= render :partial => 'comments/form', :locals => { :comment => @new_comment } %>
+        </div>
       </div>
     </div>
   </div>
 </div>
+</section>
 <br />
 <div class="row">
   <div class="small-3 large-3 columns panel">
@@ -76,7 +118,6 @@
   </div>
   <div class="small-8 large-8 columns panel">
 
-  <%= @comments.inspect %>
 
   </div>
 

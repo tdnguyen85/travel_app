@@ -1,4 +1,4 @@
-<h1>Listing users</h1>
+<h1 class="title-box">Listing users</h1>
 
 <table>
   <tr>
@@ -65,4 +65,12 @@
 <%= current_user.friendships.inspect %><br />
 <%= current_user.companionships.inspect %><br />
 
-<%= link_to 'New User', new_user_path %>
+<div class="row">
+    <div class="small-12 large-12 columns panel">
+        <% @users.each do |user| %>
+            <div class="user-box">
+
+            </div>
+        <% end %>
+    </div>
+</div>

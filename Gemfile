@@ -14,6 +14,7 @@ gem 'awesome_nested_fields'
 gem 'acts-as-taggable-on'
 gem 'awesome_nested_set'
 gem 'gravtastic'
+gem 'simple_form'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -29,7 +30,9 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
+gem 'haml'
+gem 'therubyracer'
+gem 'execjs'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

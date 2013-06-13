@@ -48,10 +48,12 @@ class TripsController < ApplicationController
   # GET /trips/1.json
   def show
     @trip = Trip.find(params[:id])
-    @user_who_commented = current_user
-    @commentable = @trip
-    @comments = @commentable.comments
-    @comment = Comment.new#(:body => params[:body], :user_id => @user_who_commented)
+    @comments = @trip.comment_threads.order('created_at desc')
+    @new_comment = Comment.build_from(@trip, current_user, "")
+    # @user_who_commented = current_user
+    # @commentable = @trip
+    # @comments = @commentable.comments
+    # @comment = Comment.new#(:body => params[:body], :user_id => @user_who_commented)
 
     # @cities_in_current_trip = City.joins(:trip).where(cities: {trip_id: @trip.id})
     # @iteneraries_of_current_trip = Itenerary.joins(:city).where(iteneraries: {trip_id: @trip.id})
