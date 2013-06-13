@@ -13,7 +13,7 @@ gem 'acts_as_commentable_with_threading'
 gem 'awesome_nested_fields'
 gem 'acts-as-taggable-on'
 gem 'awesome_nested_set'
-
+gem 'gravtastic'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -24,7 +24,7 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  gem 'zurb-foundation', '~> 4.1.6'
+  gem 'zurb-foundation', '= 3.2.5'
   gem 'jquery-ui-rails'
 end
 

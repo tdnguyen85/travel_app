@@ -13,7 +13,7 @@
     <th></th>
     <th></th>
     <th></th>
-    <th></th>
+    <th>Invite</th>
 
   </tr>
 
@@ -29,19 +29,40 @@
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <% current_user.friendships.each do |friendship| %>
-        <% if friendship.friend.id != user.id %>
-            <td><%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %></td>
+    <td>
+        <% if current_user.friendships.size > 0  && user.id != current_user.id && %>
+            <% current_user.friendships.each do |i| %>
+                <% if i.friend_id == user.id %>
+                    <%= link_to "Remove Friend", i, :method => :delete %>
+                <% end %>
+            <% end %>
         <% elsif user.id == current_user.id %>
-            <td>#</td>
-        <% else %>
-            <td><%= link_to "Remove Friend", friendship, :method => :delete %></td>
+            ###
         <% end %>
-    <% end %>
+        <span>
+            <%= link_to "+", friendships_path(:friend_id => user), :method => :post %>
+        </span>
+    </td>
+    <td>
+        <% if current_user.companionships.size > 0  && user.id != current_user.id && %>
+            <% current_user.companionships.each do |i| %>
+                <% if i.companion_id == user.id %>
+                    <%= link_to "Remove Companion", i, :method => :delete %>
+                <% end %>
+            <% end %>
+        <% elsif user.id == current_user.id %>
+            ###
+        <% end %>
+        <span>
+            <%= link_to "Add Companion", companionships_path(:companion_id => user), :method => :post %>
+        </span>
+    </td>
   </tr>
 <% end %>
 </table>
 
 <br />
+<%= current_user.friendships.inspect %><br />
+<%= current_user.companionships.inspect %><br />
 
 <%= link_to 'New User', new_user_path %>

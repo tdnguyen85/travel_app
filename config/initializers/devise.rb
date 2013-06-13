@@ -1,7 +1,7 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
-  config.authentication_keys = [ :username ]
+  config.authentication_keys = [ :email ]
   config.case_insensitive_keys = [ :username ]
   config.strip_whitespace_keys = [ :username ]
   # ==> Mailer Configuration
