@@ -15,6 +15,10 @@ gem 'acts-as-taggable-on'
 gem 'awesome_nested_set'
 gem 'gravtastic'
 gem 'simple_form'
+gem 'compass'
+gem 'zurb-foundation', '= 3.2.5'
+gem 'jquery-ui-rails'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -25,8 +29,7 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  gem 'zurb-foundation', '= 3.2.5'
-  gem 'jquery-ui-rails'
+
 end
 
 gem 'jquery-rails'
