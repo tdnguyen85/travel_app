@@ -23,4 +23,9 @@ class User < ActiveRecord::Base
   include Gravtastic
   gravtastic
 
+  acts_as_tagger
+  acts_as_taggable
+
+  validates :email, :presence => true
+  validates :email, :uniqueness => true
 end

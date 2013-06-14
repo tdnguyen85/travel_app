@@ -13,15 +13,60 @@
  *= require foundation_and_overrides
  *= require_tree .
  */
-
+@font-face {
+  font-family: "GeneralFoundicons";
+  src: url('fonts/general_foundicons.eot');
+  src: url('fonts/general_foundicons.eot?#iefix') format('embedded-opentype'),
+       url('fonts/general_foundicons.woff') format('woff'),
+       url('fonts/general_foundicons.ttf') format('truetype'),
+       url('fonts/general_foundicons.svg#[set]Foundicons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+[class*="foundicon-"] {
+  display: inline;
+  width: auto;
+  height: auto;
+  line-height: inherit;
+  vertical-align: baseline;
+  background-image: none;
+  background-position: 0 0;
+  background-repeat: repeat;
+}
+[class*="foundicon-"]:before {
+  font-family: "[set]Foundicons";
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: inherit;
+}
  ul {
   list-style: none
  }
+.link:link {
+  color: black;
 
+  }      /* unvisited link */
+.link:visited {color:black;}  /* visited link */
+.link:hover {color:grey;}  /* mouse over link */
+.link:active {color:grey;}  /* selected link */
+.white-link:link {
+  color: white;
+  }      /* unvisited link */
+.white-link:visited {color:white;}  /* visited link */
+.white-link:hover {color:grey;}  /* mouse over link */
+.white-link:active {color:grey;}  /* selected link */
 .light-box {
   background-color: #ccf1d9;
   padding: 6px;
   color: black;
+}
+.medium-icon {
+  font-size: 40px;
+  padding: 10px;
+}
+.white-text {
+  color: white;
+  padding: 5px;
 }
 .iten-box {
   background-color: #50d07d;
@@ -30,6 +75,20 @@
   border: solid 1px #2ca557;
   padding: 6px;
 
+}
+.profile-box {
+  background-color: #50d07d;
+  color: black;
+  font-size: 10px;
+  margin: 1px;
+  padding: 0 0 0 6px;
+
+}
+.side {
+  margin-top: 17px;
+}
+.nav-color {
+  background-color: #0b2916
 }
 .dark-box {
   background-color: #2da758;
@@ -43,6 +102,11 @@
 .title-box {
   background-color: #2ca557;
   padding: 0 6px;
+}
+.comp-title-box {
+  background-color: #d050a3;
+  padding: 0 6px;
+  color: black;
 }
 .separator {
   height: 1px;
@@ -60,12 +124,12 @@
 .inline-block {
   display: inline-block;
 }
-.top-menu {
+/*.top-menu {
   background-color: #50d07d;
   width: 100%;
   height: 50px;
   color: white;
-}
+}*/
 .left {
   padding-left: 3px;
 }
@@ -92,4 +156,12 @@
 }
 .list-inline {
   display: inline;
+}
+.user-box{
+  display: inline-block;
+  background-color: #ccf1d9;
+  border: solid 1px grey;
+  width: 100;
+  height: 150px;
+  padding: 5px;
 }

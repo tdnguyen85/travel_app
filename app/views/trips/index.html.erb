@@ -1,31 +1,41 @@
-<h1>Listing trips</h1>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>User</th>
-    <th>Like</th>
-    <th>Begin on</th>
-    <th>End on</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @trips.each do |trip| %>
-  <tr>
-    <td><%= trip.title %></td>
-    <td><%= trip.user_id %></td>
-    <td><%= trip.like %></td>
-    <td><%= trip.begin_on %></td>
-    <td><%= trip.end_on %></td>
-    <td><%= link_to 'Show', trip %></td>
-    <td><%= link_to 'Edit', edit_trip_path(trip) %></td>
-    <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+<br />
+<div class="row title-box">
+    <h1 class="white-text">Trips Created by <%= current_user.first_name %> <%= current_user.last_name %><i class="foundicon-globe right"></i></h1>
+    <hr />
+</div>
 
 <br />
-
-<%= link_to 'New Trip', new_trip_path %>
+<div class="row">
+    <div class="small-12 large-12 columns light-box">
+        <table class="", style="width: 100%">
+            <tr class="iten-box">
+                <th>Title</th>
+                <th>Open</th>
+                <th>Like</th>
+                <th>Begin on</th>
+                <th>End on</th>
+                <th>Show</th>
+                <th>Edit</th>
+                <th>Destroy</th>
+            </tr>
+            <% @trips.each do |trip| %>
+                <tr class="iten-box">
+                    <td><h2 class="inline"><i class="foundicon-globe"></i> <%= link_to trip.title, trip %></h2></td>
+                    <td><%= trip.open %></td>
+                    <td><%= trip.like %></td>
+                    <td><%= trip.begin_on %></td>
+                    <td><%= trip.end_on %></td>
+                    <td><i class="foundicon-website"></i> <%= link_to 'Show', trip %></td>
+                    <td><i class="foundicon-edit"></i> <%= link_to 'Edit', edit_trip_path(trip) %></td>
+                    <td><i class="foundicon-remove"></i> <%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+            <% end %>
+        </table>
+    </div>
+</div>
+<br />
+<div class="row title-box">
+    <h4 style="color: white"><i class="foundicon-plus medium-icon"></i> <%= link_to 'Create New Trip', new_trip_path, :class => "white-link" %></h4>
+    <hr />
+</div>
+<%= @trips.inspect %>

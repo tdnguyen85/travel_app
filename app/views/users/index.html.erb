@@ -1,76 +1,64 @@
-<h1 class="title-box">Listing users</h1>
-
-<table>
-  <tr>
-    <th>First name</th>
-    <th>Last name</th>
-    <th>Mood</th>
-    <th>Home base</th>
-    <th>Current location</th>
-    <th>Bio</th>
-    <th>Goal</th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th>Invite</th>
-
-  </tr>
-
-<% @users.each do |user| %>
-  <tr>
-    <td><%= user.first_name %></td>
-    <td><%= user.last_name %></td>
-    <td><%= user.mood %></td>
-    <td><%= user.home_base %></td>
-    <td><%= user.current_location %></td>
-    <td><%= user.bio %></td>
-    <td><%= user.goal %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <td>
-        <% if current_user.friendships.size > 0  && user.id != current_user.id && %>
-            <% current_user.friendships.each do |i| %>
-                <% if i.friend_id == user.id %>
-                    <%= link_to "Remove Friend", i, :method => :delete %>
-                <% end %>
-            <% end %>
-        <% elsif user.id == current_user.id %>
-            ###
-        <% end %>
-        <span>
-            <%= link_to "+", friendships_path(:friend_id => user), :method => :post %>
-        </span>
-    </td>
-    <td>
-        <% if current_user.companionships.size > 0  && user.id != current_user.id && %>
-            <% current_user.companionships.each do |i| %>
-                <% if i.companion_id == user.id %>
-                    <%= link_to "Remove Companion", i, :method => :delete %>
-                <% end %>
-            <% end %>
-        <% elsif user.id == current_user.id %>
-            ###
-        <% end %>
-        <span>
-            <%= link_to "Add Companion", companionships_path(:companion_id => user), :method => :post %>
-        </span>
-    </td>
-  </tr>
-<% end %>
-</table>
+<br />
+<div class="title-box row">
+    <h1 class="white-text">Users Hub <i class="foundicon-people right"></i></h1>
+    <hr />
+</div>
 
 <br />
-<%= current_user.friendships.inspect %><br />
-<%= current_user.companionships.inspect %><br />
 
 <div class="row">
-    <div class="small-12 large-12 columns panel">
-        <% @users.each do |user| %>
-            <div class="user-box">
-
+    <% @users.each do |user| %>
+        <div class="small-6 large-6 columns light-box">
+            <div class="row small-text">
+                <div class="small-4 large-4 columns">
+                    <% if user.gravatar_url %>
+                        <%= link_to image_tag(user.gravatar_url(:size => "150")), user, :class => "inline" %>
+                    <% else %>
+                        <img src="http://si0.twimg.com/profile_images/2236267469/image.jpg" style="width: 80px">
+                    <% end %>
+                </div>
+                <div class="small-8 large-8 columns dark-box">
+                    <h5 class="comp-title-box"><%= link_to "#{user.first_name} #{user.last_name}", user, :class => "link" %><span class="right"><%= user.mood %> <i class="foundicon-smiley"></i></span></h5>
+                    <div class="profile-box"><i class="foundicon-location"></i> <%= user.current_location %></div>
+                    <div class="profile-box"><i class="foundicon-star"></i> <%= user.goal %></div>
+                    <% if current_user.friendships.size > 0  && user.id != current_user.id %>
+                        <% current_user.friendships.each do |i| %>
+                            <% if i.friend_id == user.id && user.id != current_user.id%>
+                                <div class="profile-box">
+                                    <%= link_to "", i, :method => :delete, :class => "foundicon-minus link" %>
+                                    <%= link_to "Friend", friendships_path(:friend_id => user), :method => :post, :class => "link" %>
+                                </div>
+                            <% end %>
+                        <% end %>
+                    <% elsif user.id == current_user.id %>
+                        <span class="blank"></span>
+                    <% end %>
+                    <span>
+                        <div class="profile-box">
+                            <%= link_to "", friendships_path(:friend_id => user), :method => :post, :class => "foundicon-plus link" %>
+                            <%= link_to "Friend", friendships_path(:friend_id => user), :method => :post, :class => "link" %>
+                        </div>
+                    </span>
+                    <% if current_user.companionships.size > 0  && user.id != current_user.id && %>
+                        <% current_user.companionships.each do |i| %>
+                            <% if i.companion_id == user.id %>
+                                <div class="profile-box">
+                                    <%= link_to "", i, :method => :delete, :class => "foundicon-minus link" %>
+                                    <%= link_to "Companion", companionships_path(:companion_id => user), :method => :post, :class => "link" %>
+                                </div>
+                            <% end %>
+                        <% end %>
+                    <% elsif user.id == current_user.id %>
+                        <span class="blank"></span>
+                    <% end %>
+                    <span>
+                        <div class="profile-box">
+                            <%= link_to "", companionships_path(:companion_id => user), :method => :post, :class => "foundicon-plus link" %>
+                            <%= link_to "Companion", companionships_path(:companion_id => user), :method => :post, :class => "link" %>
+                        </div>
+                    </span>
+                </div>
             </div>
-        <% end %>
-    </div>
+        </div>
+    <% end %>
 </div>

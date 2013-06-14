@@ -21,36 +21,48 @@
   </head>
 
 
-    <nav class="top-bar">
-      <div class="fixed">
-        <div class="top-bar">
-          <section class="top-bar-section top-menu">
-            <div class="row">
-              <div class="small-2 large-2 columns">
-                <h1 class="inline-block white">APPNAME</h1>
-              </div>
-              <div class="">
-                <ul class="right">
-                <% if user_signed_in? %>
-                  Logged in as <%= current_user.email %> |
-                  <i class="foundicon-settings"></i>
-                  <%= link_to 'Edit profile', edit_user_registration_path, :class => "" %> |
-                  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => "" %>
-                <% else %>
-                  <%= link_to "Sign up", new_user_registration_path, :class => "" %> |
-                  <%= link_to "Login", new_user_session_path, :class => "" %>
-                <% end %>
-              </div>
+    <div class="fixed">
+      <nav class="top-bar" style="background-color: #0b2916">
+        <ul class="title-area">
+    <!-- Title Area -->
+    <li class="name">
+      <h1><a href="#">App Name</a></h1>
+    </li>
+    <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
+        <section class="top-bar-section" style="background-color: #0b2916">
+          <ul class="left">
+      <li class="divider"></li>
+      <li class="nav-color"><%= link_to "View Travellers", users_path, :class => "white-link" %></li>
+      <li class="divider"></li>
+      <li class="active nav-color"><%= link_to "View All My Trips", trips_path, :class => "white-link" %></li>
+      <li class="divider"></li>
+      <li class="active"><a href="#">Main Item 3</a></li>
+
+
+    </ul>
+              <ul class="right">
+              <% if user_signed_in? %>
+                Logged in as <%= current_user.email %> |
+                <%= link_to '  Edit profile', edit_user_registration_path, :class => "foundicon-settings white-link" %>
+                <li class="divider hide-for-small"></li>
+                <%= link_to "  Logout", destroy_user_session_path, method: :delete, :class => "foundicon-trash white-link" %>
+              <% else %>
+                <%= link_to "Sign up", new_user_registration_path, :class => "white-link" %>
+                <li class="divider hide-for-small"></li>
+                <%= link_to "Login", new_user_session_path, :class => "white-link" %>
+              <% end %>
+            </ul>
             </div>
-          </section>
-        </div>
-      </div>
-    </nav>
+          </div>
+        </section>
+      </nav>
+    </div>
   <body>
     <div class="row">
       <div data-alert class="alert"><%= alert %></div>
       <%= yield %>
-      <i class="foundicon-settings"></i>
     </div>
     <%= javascript_include_tag "application" %>
   </body>

@@ -3,7 +3,7 @@
   %div{ :class => "small-3 large-3 columns" }
     = image_tag current_user.gravatar_url
   %div{ :class => "small-9 large-9 columns" }
-    %h6= comment.user.first_name
+    %h6{:class => "comp-title-box" }= comment.user.first_name
     %small{:class => "right" }= comment.updated_at.strftime("%B %-d, %Y %-l:%M %p")
     %br
     %span= comment.body

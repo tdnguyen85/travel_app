@@ -1,8 +1,7 @@
 <div class="row show-container">
   <section id="sidebar" role="complementary">
-          <div class="title-box">•</div>
-
-    <div class="small-3 large-3 columns light-box">
+    <br />
+    <div class="small-3 large-3 columns light-box side">
       <div class="iten-box">
         <span class="small-text">
           <%= image_tag current_user.gravatar_url :class => "inline" %>
@@ -19,31 +18,31 @@
       <br />
       <div>
         <div class="iten-box">
-          <div class="title-box-light">Companions of <%= current_user.first_name %> for <%= @trip.title %></div>
+          <div class="title-box">Companions of <%= current_user.first_name %> for <%= @trip.title %></div>
           <ul class="small-text">
           <% current_user.companionships.each do |companionship| %>
             <li>
               <%= link_to companionship.companion.first_name, user_path(companionship.companion) %>
               (<%= link_to "X", companionship, :method => :delete %>)
             </li>
-            <hr />
-            <li><%= link_to "Add Companion to", users_path %> <%= @trip.title %></li>
           <% end %>
+          <hr />
+            <li><%= link_to "Add Companion to", users_path %> <%= @trip.title %></li>
 
           </ul>
         </div>
         <br />
         <div class="iten-box">
-          <div class="title-box-light">Friends of <%= current_user.first_name %></div>
+          <div class="title-box">Friends of <%= current_user.first_name %></div>
           <ul class="small-text">
           <% current_user.friendships.each do |friendship| %>
             <li>
               <%= link_to friendship.friend.first_name, user_path(friendship.friend) %>
               (<%= link_to "X", friendship, :method => :delete %>)
             </li>
-            <hr />
-            <li><%= link_to "Find New Friends", users_path %></li>
           <% end %>
+          <hr />
+          <li><%= link_to "Find New Friends", users_path %></li>
 
           </ul>
         </div>
@@ -58,23 +57,24 @@
 
       <div class="small-12 large-12 columns">
         <p id="notice title-box-light"><%= notice %></p>
-        <h3 class="title-box">
+        <h3 class="comp-title-box">
           <%= @trip.title %>
           <% if @trip.open %>
             •<span>This trip is open to other travelers.</span>
           <% end %>
-          <%= link_to 'Edit', edit_trip_path(@trip), :class => "right" %>
+          <%= link_to 'Edit', edit_trip_path(@trip), :class => "right link" %>
         </h3>
-        <span>
+        <div class="light-box">
           <%= @trip.tag_list %>
-        </span>
+        </div>
+        <br />
         <section class="light-box">
         <ul>
           <% @trip.cities.each do |i| %>
             <li class="small-text">
               <div>
                 <span class ="right"><%= link_to "×", city_path(i), :method => :delete, :remote => true, :confirm => "Are you sure you want to remove this city? If item is deleted, reload the page for the change to be shown" %></span>
-                <h2 class="title-box-light"><%= i.name %></h2>
+                <h2 class="title-box-light white-text"><%= i.name %></h2>
                 <h4 class="inline"><%= i.country %></h4>
                 •created: <%= i.created_at.strftime("%B %-d, %Y %-l:%M %p") %>
                 •updated: <%= i.updated_at.strftime("%B %-d, %Y %-l:%M %p") %>
@@ -82,7 +82,7 @@
               <strong>Itenerary for <%= i.name %></strong>
               <ul class="">
                 <% i.iteneraries.each do |n| %>
-                <section class="iten-box">
+                <section class="title-box-light">
                   <span class ="right"><%= link_to "×", itenerary_path(n), :method => :delete, :remote => true, :confirm => "Are you sure you want to remove this itenerary? If item is deleted, reload the page for the change to be shown" %></span>
                   <li><%= n.item %></li>
                   <li class="list-inline">•<%= "This is a thing to do" if n.activity_to_do %></li>
@@ -112,11 +112,11 @@
 </section>
 <br />
 <div class="row">
-  <div class="small-3 large-3 columns panel">
+  <div class="small-3 large-3 columns">
   </div>
   <div class="small-1 large-1 columns">
   </div>
-  <div class="small-8 large-8 columns panel">
+  <div class="small-8 large-8 columns">
 
 
   </div>
