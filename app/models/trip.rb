@@ -5,7 +5,6 @@ class Trip < ActiveRecord::Base
   accepts_nested_attributes_for :cities, allow_destroy: true, reject_if: :all_blank
   acts_as_commentable
   acts_as_taggable
-  acts_as_list
   has_many :comments, as: :commentable
 
   validates_presence_of :begin_on, :end_on, :title, :user_id

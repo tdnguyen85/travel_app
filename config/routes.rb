@@ -1,6 +1,6 @@
 TravelApp::Application.routes.draw do
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}
-  root :to => "trips#index"
+  root :to => "welcome#index"
   # get 'cities/:id', :to => 'city#show', :as => 'show_city'
 
   resources :companionships

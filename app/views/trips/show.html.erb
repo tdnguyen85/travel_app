@@ -64,8 +64,12 @@
           <% end %>
           <%= link_to 'Edit', edit_trip_path(@trip), :class => "right link" %>
         </h3>
-        <div class="light-box">
-          <%= @trip.tag_list %>
+        <div class="">
+          <ul class="tags left">
+            <% @trip.tag_list.each do |t| %>
+              <li class="tag"><%= link_to t, tag_path(t) %></li>
+            <% end %>
+          </ul>
         </div>
         <br />
         <section class="light-box">

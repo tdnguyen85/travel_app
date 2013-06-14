@@ -3,11 +3,11 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-    @trips = Trip.all
+    @trips = current_user.trips.all
     if params[:tag]
-      @trips = Trip.tagged_with(params[:tag])
+      @trips = current_user.trips.tagged_with(params[:tag])
     else
-      @trips = Trip.all
+      @trips = current_user.trips.all
     end
     respond_to do |format|
       format.html # index.html.erb
@@ -92,7 +92,7 @@ class TripsController < ApplicationController
 
     respond_to do |format|
       if @trip.save
-        format.html { redirect_to new_city_path, notice: 'Trip was successfully created.' }
+        format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
         format.json { render json: @trip, status: :created, location: @trip }
       else
         format.html { render action: "new" }

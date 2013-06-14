@@ -22,23 +22,22 @@
 
 
     <div class="fixed">
-      <nav class="top-bar" style="background-color: #0b2916">
+      <nav class="top-bar">
         <ul class="title-area">
     <!-- Title Area -->
     <li class="name">
       <h1><a href="#">App Name</a></h1>
     </li>
     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
   </ul>
-        <section class="top-bar-section" style="background-color: #0b2916">
+        <section class="top-bar-section">
           <ul class="left">
       <li class="divider"></li>
-      <li class="nav-color"><%= link_to "View Travellers", users_path, :class => "white-link" %></li>
+      <li class="" style="background-color: #0b2916"><%= link_to "View Travellers", users_path, :class => "white-link" %></li>
       <li class="divider"></li>
-      <li class="active nav-color"><%= link_to "View All My Trips", trips_path, :class => "white-link" %></li>
+      <li class="" style="background-color: #0b2916"><%= link_to "View All My Trips", trips_path, :class => "white-link" %></li>
       <li class="divider"></li>
-      <li class="active"><a href="#">Main Item 3</a></li>
+      <li class="" style="background-color: #0b2916"><a href="#">Vieww Profile</a></li>
 
 
     </ul>
@@ -65,5 +64,6 @@
       <%= yield %>
     </div>
     <%= javascript_include_tag "application" %>
+    <link rel="stylesheet" href="z.css.scss" />
   </body>
 </html>
