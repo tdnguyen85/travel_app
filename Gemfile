@@ -7,7 +7,6 @@ gem 'rails', '3.2.13'
 
 gem 'sqlite3'
 gem 'rspec-rails', '~> 2.0'
-gem 'capybara'
 gem 'devise'
 gem 'acts_as_commentable_with_threading'
 gem 'awesome_nested_fields'

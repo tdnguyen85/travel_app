@@ -58,6 +58,7 @@
       <div class="small-12 large-12 columns">
         <p id="notice title-box-light"><%= notice %></p>
         <h3 class="comp-title-box">
+          <i class="foundicon-globe left"></i>
           <%= @trip.title %>
           <% if @trip.open %>
             •<span>This trip is open to other travelers.</span>
@@ -70,6 +71,7 @@
               <li class="tag"><%= link_to t, tag_path(t) %></li>
             <% end %>
           </ul>
+          <br />
         </div>
         <br />
         <section class="light-box">
@@ -78,7 +80,7 @@
             <li class="small-text">
               <div>
                 <span class ="right"><%= link_to "×", city_path(i), :method => :delete, :remote => true, :confirm => "Are you sure you want to remove this city? If item is deleted, reload the page for the change to be shown" %></span>
-                <h2 class="title-box-light white-text"><%= i.name %></h2>
+                <h2 class="title-box-light white-text"><i class="foundicon-flag left"></i> <%= i.name %></h2>
                 <h4 class="inline"><%= i.country %></h4>
                 •created: <%= i.created_at.strftime("%B %-d, %Y %-l:%M %p") %>
                 •updated: <%= i.updated_at.strftime("%B %-d, %Y %-l:%M %p") %>

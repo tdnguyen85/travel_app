@@ -1,5 +1,10 @@
+<br />
+<br />
+<div class="row light-box-sign-up">
 <p id="notice"><%= notice %></p>
 
+<p><%= image_tag current_user.gravatar_url :class => "" %>
+</p>
 <p>
   <b>First name:</b>
   <%= @user.first_name %>
@@ -38,3 +43,4 @@
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+</div>
